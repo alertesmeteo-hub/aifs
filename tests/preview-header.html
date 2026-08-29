@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aperçu compact AIFS v1.0.0</title>
+  <link rel="stylesheet" href="../wordpress/aifs-ecmwf-france/assets/aifs-meteo.css">
+  <link rel="stylesheet" href="../wordpress/aifs-ecmwf-france/assets/aifs-map.css">
+  <style>body{margin:0;padding:18px;background:#eef3f7;font-family:Inter,"Segoe UI",Arial,sans-serif}.preview{max-width:1480px;margin:auto}</style>
+</head>
+<body>
+<main class="preview">
+  <section class="aifs-card aifs-national">
+    <header class="aifs-header">
+      <div>
+        <p class="aifs-kicker">MODÈLE IA DÉTERMINISTE • FRANCE MÉTROPOLITAINE</p>
+        <h2>Prévisions AIFS — Perpignan</h2>
+        <div class="aifs-header-details"><p class="aifs-city-altitude">Altitude de Perpignan : ≈ 6 m (point de grille AIFS)</p><p class="aifs-meta">Run du 25/08/2026 12h00 • résolution 28,0 km • diagnostic neige AIFS</p></div>
+      </div>
+      <div class="aifs-badge"><span>AIFS</span><strong>0,25°</strong></div>
+    </header>
+    <div class="aifs-toolbar">
+      <div class="aifs-search">
+        <div class="aifs-search-mainline">
+          <label for="city">Choisissez votre commune</label>
+          <div class="aifs-search-control"><span class="aifs-search-icon">⌕</span><input id="city" class="aifs-city-input" value="Perpignan"></div>
+          <button class="aifs-locate-button">📍 Détecter ma ville</button>
+          <p class="aifs-search-status">Prévisions affichées pour Perpignan (66000).</p>
+        </div>
+      </div>
+      <div class="aifs-coverage"><strong>34 746 communes</strong><span>Métropole et Corse</span></div>
+    </div>
+  </section>
+
+  <section class="aifs-card aifsm-card">
+    <div class="aifsm-toolbar">
+      <div class="aifsm-field aifsm-layer-picker"><span>Paramètre</span><button class="aifsm-layer-trigger"><span>Température à 2 m</span></button></div>
+      <div class="aifsm-tools"><button class="aifsm-tool-toggle">🔍 Zoom interactif</button><button class="aifsm-tool-toggle">📈 Diagramme</button></div>
+      <div class="aifsm-time-controls"><button>◀</button><button>▶</button><button>▶</button></div>
+      <div class="aifsm-validity-actions"><button class="aifsm-menu-close" aria-expanded="true"><span>Replier</span><span class="aifsm-menu-close-icon">⌃</span></button><div class="aifsm-validity"><span>Prévision valable</span><strong>mer. 26/08 12h00</strong><small>H+24</small></div></div>
+    </div>
+    <div class="aifsm-period-selector">
+      <div class="aifsm-period-head"><div><strong>Période du cumul de précipitations</strong><small>Déplacez les deux curseurs pour choisir précisément le début et la fin.</small></div><span>H+12 → H+36 • 24 h</span></div>
+      <div class="aifsm-dual-range" style="--aifsm-period-start:15%;--aifsm-period-end:65%"><div class="aifsm-dual-range-track"></div><input type="range" min="0" max="10" value="2"><input type="range" min="0" max="10" value="7"></div>
+      <div class="aifsm-period-values"><span><small>Du</small><strong>mer. 26/08 06h</strong></span><span><small>Au</small><strong>jeu. 27/08 06h</strong></span></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

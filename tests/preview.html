@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aperçu AIFS v1.0.0</title>
+  <link rel="stylesheet" href="../wordpress/aifs-ecmwf-france/assets/aifs-meteo.css">
+  <link rel="stylesheet" href="../wordpress/aifs-ecmwf-france/assets/aifs-map.css">
+  <style>body{margin:0;padding:18px;background:#eef3f7;font-family:Inter,"Segoe UI",Arial,sans-serif}.preview{max-width:1480px;margin:auto}</style>
+</head>
+<body>
+<main class="preview">
+<section class="aifs-card aifs-national" data-aifs-app data-base-url="../build/test-aifs-map" data-default-code="66136" data-default-department="66" data-default-name="Perpignan" data-hours="48" data-timezone="Europe/Paris" data-title-prefix="Prévisions AIFS" data-selector="1">
+  <header class="aifs-header">
+    <div><p class="aifs-kicker">MODÈLE IA DÉTERMINISTE • FRANCE MÉTROPOLITAINE</p><h2 data-aifs-title>Prévisions AIFS — Perpignan</h2><div class="aifs-header-details"><p class="aifs-city-altitude" data-aifs-altitude>Altitude de Perpignan : chargement…</p><p class="aifs-meta" data-aifs-meta>Chargement du dernier run AIFS…</p></div></div>
+    <div class="aifs-badge"><span>AIFS</span><strong>0,25°</strong></div>
+  </header>
+  <div class="aifs-toolbar">
+    <div class="aifs-search"><div class="aifs-search-mainline"><label for="preview-city">Choisissez votre commune</label><div class="aifs-search-control"><span class="aifs-search-icon">⌕</span><input id="preview-city" class="aifs-city-input" type="search" value="Perpignan" placeholder="Nom de commune ou code postal" role="combobox" aria-expanded="false" aria-controls="preview-results" aria-describedby="preview-status"></div><button type="button" class="aifs-locate-button" data-aifs-locate>📍 Détecter ma ville</button><p id="preview-status" class="aifs-search-status" role="status">Saisissez au moins deux lettres ou un code postal.</p></div><div id="preview-results" class="aifs-search-results" role="listbox" hidden></div></div>
+    <div class="aifs-coverage"><strong>34 746 communes</strong><span>Métropole et Corse</span></div>
+  </div>
+  <p class="aifs-stale" data-aifs-stale hidden>Attention : la dernière mise à jour disponible a plus de 8 heures.</p>
+  <div class="aifs-tabs" role="tablist">
+    <button type="button" class="aifs-tab aifs-tab-map is-active" data-aifs-tab="map" aria-selected="true">🗺️ Cartes météo</button>
+    <button type="button" class="aifs-tab" data-aifs-tab="general" aria-selected="false">🌤️ Prévisions générales</button>
+    <button type="button" class="aifs-tab aifs-tab-snow" data-aifs-tab="snow" aria-selected="false">❄️ Risque de neige</button>
+  </div>
+  <div class="aifs-panel aifs-map-panel" data-aifs-panel="map">
+    <section class="aifs-card aifsm-card" data-aifsm-app data-base-url="../build/test-aifs-map" data-variable="temperature" data-timezone="Europe/Paris" data-animation="1" data-module-version="1.0.0" style="--aifsm-height:760px">
+      <header class="aifs-header aifsm-header"><div><p class="aifs-kicker">MODÈLE IA DÉTERMINISTE • JUSQU'À +360 H</p><h2>Cartes AIFS / ECMWF — résolution 0,25°</h2><p class="aifs-meta" data-aifsm-run>Chargement du dernier run AIFS…</p></div><div class="aifs-badge"><span>AIFS</span><strong>0,25°</strong></div></header>
+      <div class="aifsm-toolbar"><div class="aifsm-field aifsm-layer-picker"><span>Paramètre</span><button type="button" class="aifsm-layer-trigger" data-aifsm-menu-toggle aria-expanded="false"><span data-aifsm-current-layer>Température à 2 m</span></button></div><div class="aifsm-tools"><button type="button" class="aifsm-tool-toggle" data-aifsm-tool="zoom" aria-pressed="false">🔍 Zoom interactif</button><button type="button" class="aifsm-tool-toggle" data-aifsm-tool="diagram" aria-pressed="false">📈 Diagramme</button></div><div class="aifsm-time-controls"><button type="button" data-aifsm-previous>◀</button><button type="button" data-aifsm-play>▶</button><button type="button" data-aifsm-next>▶</button></div><div class="aifsm-validity-actions"><button type="button" class="aifsm-menu-close" data-aifsm-menu-close aria-expanded="false"><span data-aifsm-menu-label>Déplier</span><span class="aifsm-menu-close-icon" data-aifsm-menu-icon>⌄</span></button><div class="aifsm-validity"><span>Prévision valable</span><strong data-aifsm-validity>—</strong><small data-aifsm-lead>—</small></div></div></div><p class="aifsm-tool-hint" data-aifsm-tool-hint hidden></p>
+      <div class="aifsm-layer-menu" data-aifsm-layer-menu hidden><div class="aifsm-layer-menu-head"><div><strong>Choisir une carte AIFS</strong><small>Paramètres disponibles dans la production ouverte ECMWF AIFS</small></div></div><div class="aifsm-layer-grid" data-aifsm-layer-grid></div></div>
+      <div class="aifsm-period-selector" data-aifsm-period hidden><div class="aifsm-period-head"><div><strong data-aifsm-period-title>Période personnalisée</strong><small>Déplacez les deux curseurs pour choisir précisément le début et la fin.</small></div><span data-aifsm-period-summary>—</span></div><div class="aifsm-dual-range" data-aifsm-dual-range><div class="aifsm-dual-range-track"></div><input data-aifsm-period-start type="range" min="0" max="1" value="0"><input data-aifsm-period-end type="range" min="0" max="1" value="1"></div><div class="aifsm-period-values"><span><small>Du</small><strong data-aifsm-period-start-label>—</strong></span><span><small>Au</small><strong data-aifsm-period-end-label>—</strong></span></div></div>
+      <p class="aifs-stale" data-aifsm-stale hidden>Production ancienne.</p>
+      <div class="aifsm-viewport" data-aifsm-viewport>
+        <div class="aifsm-scene" data-aifsm-scene><canvas class="aifsm-weather-canvas" data-aifsm-weather></canvas><canvas class="aifsm-vector-canvas" data-aifsm-vectors></canvas></div><canvas class="aifsm-label-canvas" data-aifsm-labels></canvas>
+        <div class="aifsm-probe" data-aifsm-probe hidden><strong data-aifsm-probe-value>—</strong><span data-aifsm-probe-label>Valeur AIFS</span></div>
+        <div class="aifsm-map-titlebar"><strong data-aifsm-map-title>Carte AIFS</strong><span data-aifsm-map-run>Run AIFS —</span></div><div class="aifsm-map-date" data-aifsm-map-date>Échéance —</div>
+        <div class="aifsm-map-buttons"><span class="aifsm-zoom-level" data-aifsm-zoom-level>100 %</span><button type="button" data-aifsm-zoom-in>+</button><button type="button" data-aifsm-zoom-out>−</button><button type="button" data-aifsm-reset>⌂</button><button type="button" data-aifsm-fullscreen>⛶</button></div>
+        <div class="aifsm-advanced-tools" data-aifsm-advanced-tools hidden><button type="button" data-aifsm-copy>📋 Copier l’image</button><button type="button" data-aifsm-capture>📷 Télécharger PNG</button></div><div class="aifsm-legend" data-aifsm-legend></div><a class="aifsm-map-brand" href="https://www.alertes-meteo.com/">www.alertes-meteo.com • Module v1.0.0</a><div class="aifsm-loading" data-aifsm-loading>Chargement de la carte…</div><div class="aifsm-error" data-aifsm-error hidden></div>
+      </div>
+      <div class="aifsm-timeline" data-aifsm-timeline><div data-aifsm-single-timeline><input data-aifsm-slider type="range" min="0" max="0" value="0"><div class="aifsm-timeline-labels"><span>Run</span><span>Échéance maximale</span></div></div></div>
+      <footer class="aifs-footer"><span data-aifsm-generated>Mise à jour…</span></footer>
+    </section>
+  </div>
+  <div class="aifs-panel" data-aifs-panel="general" hidden>
+    <div class="aifs-table-wrap aifs-general-wrap"><table class="aifs-table"><thead><tr><th>Date</th><th>Heure</th><th>Temps</th><th>T°</th><th>Hum.</th><th>Pluie</th><th>Nuages</th><th>Vent</th><th>Pression</th></tr></thead><tbody data-aifs-body-general><tr><td colspan="9" class="aifs-loading">Chargement…</td></tr></tbody></table></div>
+    <section class="aifs-charts"><article class="aifs-chart-card"><h3 data-aifs-chart-title-temperature>Températures</h3><div class="aifs-chart" data-aifs-chart-temperature></div></article><article class="aifs-chart-card"><h3 data-aifs-chart-title-pressure>Pression</h3><div class="aifs-chart" data-aifs-chart-pressure></div></article><article class="aifs-chart-card"><h3 data-aifs-chart-title-rain>Précipitations</h3><p data-aifs-rain-total></p><div class="aifs-chart" data-aifs-chart-rain></div></article><article class="aifs-chart-card"><h3 data-aifs-chart-title-wind>Vent</h3><div class="aifs-chart" data-aifs-chart-wind></div></article></section>
+  </div>
+  <div class="aifs-panel" data-aifs-panel="snow" hidden><p class="aifs-snow-summary" data-aifs-snow-summary>Chargement…</p><div class="aifs-top-scroll" data-aifs-top-scroll="snow" hidden><div></div></div><div class="aifs-table-wrap aifs-snow-wrap" data-aifs-scroll-wrap="snow"><table class="aifs-table aifs-snow-table"><thead><tr><th>Date</th><th>Heure</th><th>Risque</th><th>Phase</th><th>Neige / pas</th><th>Neige 3h</th><th>Neige 6h</th><th>Tenue</th><th>Pression</th><th>Hum.</th><th>Vent</th><th>Cumul</th><th>Détails</th></tr></thead><tbody data-aifs-body-snow><tr><td colspan="13">Chargement…</td></tr></tbody></table></div></div>
+  <footer class="aifs-footer"><span data-aifs-generated>Mise à jour…</span><span><a href="https://www.alertes-meteo.com/">www.alertes-meteo.com</a></span><span class="aifs-plugin-version">Module AIFS v1.0.0</span></footer>
+</section>
+</main>
+<script src="../wordpress/aifs-ecmwf-france/assets/aifs-meteo.js"></script>
+<script src="../wordpress/aifs-ecmwf-france/assets/aifs-map.js"></script>
+</body>
+</html>
