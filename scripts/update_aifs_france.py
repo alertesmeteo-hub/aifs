@@ -45,7 +45,7 @@ from aifs_maps import DEFAULT_BOUNDS, AIFSMapRenderer
 
 
 LOGGER = logging.getLogger("aifs.france")
-PIPELINE_VERSION = "1.0.0"
+PIPELINE_VERSION = "1.0.1"
 DATASET_PAGE = "https://www.ecmwf.int/en/forecasts/datasets/open-data"
 DEFAULT_CURRENT_METADATA_URL = (
     "https://raw.githubusercontent.com/alertesmeteo-hub/"
@@ -484,6 +484,21 @@ class MapSampler:
             cval=np.nan,
             prefilter=interpolation_order > 1,
         ).astype(np.float32, copy=False)
+        # Le spline cubique peut osciller (dépassement de Gibbs) autour d'un
+        # point très marqué — un pic de précipitation AIFS isolé, par
+        # exemple — et contaminer une large zone avec des valeurs
+        # supérieures au maximum réellement observé sur la grille source.
+        # Recadrer sur les bornes réelles des données sources élimine ce
+        # dépassement sans jamais retirer un extremum authentique, puisque
+        # celui-ci est par définition déjà compris dans cet intervalle.
+        finite_source = values[np.isfinite(values)]
+        if finite_source.size:
+            np.clip(
+                sampled,
+                float(np.min(finite_source)),
+                float(np.max(finite_source)),
+                out=sampled,
+            )
         sampled[~self.coverage] = np.nan
         return sampled
 
