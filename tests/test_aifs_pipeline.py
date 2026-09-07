@@ -58,7 +58,7 @@ class AIFSGridTests(unittest.TestCase):
             "surface_pressure_pa": np.array([101000.0, 100000.0]),
             "mean_sea_pressure_pa": np.array([102000.0, 101500.0]),
             "cloud_total_fraction": np.array([25.0, 80.0]),
-            "precipitation_total_m": np.array([0.0, 2.5]),
+            "precipitation_total_mm": np.array([0.0, 2.5]),
         }
         result, _state = transform_step(raw, np.zeros(shape), {}, 0)
         np.testing.assert_allclose(result["temperature_c"], [0.0, 20.0])

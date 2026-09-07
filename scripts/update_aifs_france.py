@@ -45,7 +45,7 @@ from aifs_maps import DEFAULT_BOUNDS, AIFSMapRenderer
 
 
 LOGGER = logging.getLogger("aifs.france")
-PIPELINE_VERSION = "1.0.1"
+PIPELINE_VERSION = "1.0.2"
 DATASET_PAGE = "https://www.ecmwf.int/en/forecasts/datasets/open-data"
 DEFAULT_CURRENT_METADATA_URL = (
     "https://raw.githubusercontent.com/alertesmeteo-hub/"
@@ -389,8 +389,8 @@ def message_field(gid: int) -> str | None:
         "lcc": "cloud_low_pct",
         "mcc": "cloud_mid_pct",
         "hcc": "cloud_high_pct",
-        "tp": "precipitation_total_m",
-        "sf": "snow_total_m",
+        "tp": "precipitation_total_mm",
+        "sf": "snow_total_mm",
     }
     return direct.get(short_name)
 
@@ -534,10 +534,7 @@ def parse_grib_files(
                         observed_lead = int(end_step)
                     point_field = grid.extract(gid)
                     map_field = map_sampler.extract(gid, grid)
-                    if field in {"precipitation_total_m", "snow_total_m"}:
-                        point_field = point_field * 1000.0
-                        map_field = map_field * 1000.0
-                    elif field in {"cloud_total_fraction", "cloud_low_pct", "cloud_mid_pct", "cloud_high_pct"}:
+                    if field in {"cloud_total_fraction", "cloud_low_pct", "cloud_mid_pct", "cloud_high_pct"}:
                         point_field = point_field * 100.0
                         map_field = map_field * 100.0
                     elif field == "surface_geopotential":
@@ -624,13 +621,13 @@ def transform_step(
 
     precipitation, rain_total = accumulation(
         raw,
-        "precipitation_total_m",
+        "precipitation_total_mm",
         shape,
         previous.get("rain_total"),
         lead_hour,
     )
     snow, snow_total = accumulation(
-        raw, "snow_total_m", shape, previous.get("snow_total"), lead_hour
+        raw, "snow_total_mm", shape, previous.get("snow_total"), lead_hour
     )
 
     wind_speed = np.hypot(u_wind, v_wind) * 3.6
