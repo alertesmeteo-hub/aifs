@@ -918,6 +918,52 @@ def retrieve_aifs_step(
     )
 
 
+OPEN_DATA_ROOT = "https://data.ecmwf.int/forecasts"
+RUNS_TO_TRY = 4
+
+
+def step_published(run_time: datetime, lead: int) -> bool:
+    """Vrai si l'échéance est sur le portail ECMWF (index présent)."""
+    stamp = run_time.strftime("%Y%m%d%H")
+    url = (
+        f"{OPEN_DATA_ROOT}/{run_time:%Y%m%d}/{run_time:%H}z/aifs-single/0p25/oper/"
+        f"{stamp}0000-{lead}h-oper-fc.index"
+    )
+    response = requests.head(
+        url,
+        timeout=(10, 30),
+        headers={"User-Agent": USER_AGENT},
+        allow_redirects=True,
+    )
+    if response.status_code == 404:
+        return False
+    response.raise_for_status()
+    return True
+
+
+def select_complete_run(client: Client, forecast_hours: int) -> datetime:
+    """Dernier run dont toutes les échéances sont publiées.
+
+    ECMWF publie parfois un run incomplet (le 20 oct. 2026, run 06Z sans
+    l'échéance 0 h) : la dernière échéance seule ne suffit pas à le dire complet.
+    """
+    latest = client.latest(stream="oper", type="fc", step=forecast_hours, param="2t")
+    if latest.tzinfo is None:
+        latest = latest.replace(tzinfo=timezone.utc)
+    steps = forecast_steps(forecast_hours)
+    for back in range(RUNS_TO_TRY):
+        candidate = latest - timedelta(hours=6 * back)
+        missing = [lead for lead in steps if not step_published(candidate, lead)]
+        if not missing:
+            return candidate
+        LOGGER.warning(
+            "Run AIFS %s incomplet sur le portail ECMWF (échéances manquantes : %s) ; run précédent",
+            iso_utc(candidate),
+            ", ".join(f"+{lead} h" for lead in missing[:10]),
+        )
+    raise RuntimeError(f"Aucun run AIFS complet parmi les {RUNS_TO_TRY} derniers")
+
+
 def build_product(
     client: Client,
     catalog: NationalCatalog,
@@ -1156,9 +1202,7 @@ def main() -> int:
         resol="0p25",
         infer_stream_keyword=False,
     )
-    run_hint = client.latest(stream="oper", type="fc", step=args.forecast_hours, param="2t")
-    if run_hint.tzinfo is None:
-        run_hint = run_hint.replace(tzinfo=timezone.utc)
+    run_hint = select_complete_run(client, args.forecast_hours)
     LOGGER.info("Run AIFS sélectionné : %s", iso_utc(run_hint))
     if not args.force and already_published(
         args.current_metadata_url, run_hint
